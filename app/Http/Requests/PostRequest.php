@@ -22,9 +22,9 @@ class PostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'description' =>['required|string|max:1000'],
-            'statu'       => ['required|string|in:brouillon,publié,archivé'], 
-            'image'       => ['required|image|mimes:jpeg,png,jpg,gif|max:2048'],
+            'description' =>['required','string'],
+            'statu'       => ['required','string'], 
+            'image'       => ['required','image','mimes:jpg,png'],
         ];
     }
 }
