@@ -3,12 +3,30 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserFormRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    
+    public function register(UserFormRequest $request)
+    {
+        $validated = $request->validated();
+
+        $user = User::create([
+            'name'=>$validated['name'],
+            'email'=>$validated['email'],
+            'password'=>Hash::make($validated['password'])
+        ]);
+
+        return response()->json([
+            'message'=>'bien creer',
+            'user'=>$user
+        ]);
+    }
 
     public function login(Request $request)
     {
