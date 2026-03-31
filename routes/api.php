@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth\AuthController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +18,7 @@ Route::middleware('auth:sanctum')->group( function(){
     Route::apiResource('/user',UserController::class)->except(['index','create','store','show']);
 
     Route::post('/logout',[AuthController::class, 'logout']);
+
+    Route::apiResource('/messages',MessageController::class);
 
 });
